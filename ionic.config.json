@@ -1,0 +1,7 @@
+{
+  "name": "beaver-creditreminder",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
