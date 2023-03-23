@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Agregar tarjeta </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="newCard.name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Número de tarjeta</ion-label>
+      <ion-input
+        [(ngModel)]="newCard.number"
+        type="text"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+        maxlength="16"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Fecha de expiración</ion-label>
+      <ion-item>
+        <ion-label position="stacked">Mes</ion-label>
+        <ion-input [(ngModel)]="expirationMonth" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Año</ion-label>
+        <ion-input [(ngModel)]="expirationYear" type="text"></ion-input>
+      </ion-item>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label position="stacked">Día de corte</ion-label>
+    <ion-input [(ngModel)]="newCard.dueday" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Día de pago</ion-label>
+    <ion-input [(ngModel)]="newCard.paymentday" type="text"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" [disabled]="!validCard" (click)="addCard()"
+    >Agregar tarjeta</ion-button
+  >
+</ion-content>

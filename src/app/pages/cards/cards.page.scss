@@ -1,0 +1,16 @@
+ion-content ion-card ion-card-header {
+  font-weight: bold;
+  font-size: large;
+}
+
+/* Clase CSS para mostrar una tarjeta con fondo amarillo y texto negro */
+.warning {
+  background-color: #f2b400;
+  color: black;
+}
+
+/* Clase CSS para mostrar una tarjeta con fondo rojo y texto blanco */
+.danger {
+  background-color: #d3212d;
+  color: white;
+}

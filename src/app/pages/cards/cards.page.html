@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Tarjetas </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="goToAddCard()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let card of cards; index as i">
+    <ion-card-header> {{ card.name }} </ion-card-header>
+    <ion-card-content>
+      <div *ngIf="showCard">
+        <div>
+          Card number: {{ card.number.slice(0, 4)+ ' ' + card.number.slice(4, 8)
+          + ' ' + card.number.slice(8, 12) + ' ' + card.number.slice(12, 16) }}
+          <ion-icon
+            name="eye-off-outline"
+            (click)="showCardNumber(false)"
+          ></ion-icon>
+        </div>
+      </div>
+      <div *ngIf="!showCard">
+        <div>
+          Card number: {{ '****' + ' ' + '****' + ' ' + '****' + ' ' +
+          card.number.slice(12, 16) }}
+          <ion-icon
+            name="eye-outline"
+            (click)="showCardNumber(true)"
+          ></ion-icon>
+        </div>
+      </div>
+
+      <div>
+        Expiration (MM/YY): {{ card.expirationMonth }}/{{ card.expirationYear }}
+      </div>
+      <div
+        [ngClass]="{ 'warning':  (card.dueday - dia_actual) <= 5 && (card.dueday - dia_actual) > 0, 'danger': (card.dueday - dia_actual) < 1 &&  (card.dueday - dia_actual) > -5}"
+      >
+        Due Day: {{ card.dueday }}
+      </div>
+      <div
+        [ngClass]="{
+        'warning': (card.paymentday - dia_actual) <= 5 && (card.paymentday - dia_actual) > 0,
+        'danger': (card.paymentday - dia_actual) < 1 &&  (card.paymentday - dia_actual) > -5
+      }"
+      >
+        Payment Day: {{ card.paymentday }}
+      </div>
+
+      <ion-card-content>
+        <div>
+          <ion-icon
+            name="trash-outline"
+            slot="end"
+            (click)="deleteCard(card.id)"
+          ></ion-icon>
+        </div>
+      </ion-card-content>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
